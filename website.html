@@ -1,0 +1,73 @@
+<html>
+<head>
+	<title> inspiration overload </title> 
+	<script src="http://code.jquery.com/jquery-latest.js"></script> 
+
+	<style type="text/css">
+		body{text-align:center;}	
+	#title{font-family: helvetica; color:#F0E2C8; font-weight:900 ; font-size:200px; line-height:150px; margin: 50px 0px 50px 0px;}
+	
+	</style>
+
+
+
+
+</head>
+<body>
+
+
+<div id='title'> inspiration overload </div>
+
+<div id ='content'>
+
+</div>
+
+<script type = "text/javascript">
+	//global
+	var current_ID= 0;
+
+	function displayIMG(id, link){
+		image_html = "<span class='image' id= '"+id+"'> <img src ='" + link + "' , title = '"+link+ "', alt ='" + link +" '/></span>";
+		return image_html;
+	}
+
+	function pullMoreImages(){
+	$.getJSON('/inspiration/data/'+current_ID, function(obj){
+			images = []
+
+			$.each(obj, function(key,val){
+			
+			images.push(displayIMG(key,val));	
+				});	
+			current_ID+=images.length;
+			$('<div>',{'id' : 'images'+current_ID, html: images.join('')}).appendTo('#content'); 
+			});
+
+	}
+	
+	//initial pull for images
+	$.getJSON('/inspiration/data/0', function(obj){
+			images = []
+
+			$.each(obj, function(key,val){
+			
+			images.push(displayIMG(key,val));	
+				});	
+			current_ID+=images.length;
+			$('<div>',{'id' : 'images', html: images.join('')}).appendTo('#content'); 
+			});
+
+	//to identify end of window 
+	$(window).scroll(function(){
+			if  ($(window).scrollTop() +10> $(document).height() - $(window).height()){
+			pullMoreImages();
+			
+				   }
+			});
+
+
+
+</script>
+
+</body>
+</html>

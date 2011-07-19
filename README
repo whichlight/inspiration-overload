@@ -1,0 +1,18 @@
+Inspiration Overload
+
+by Kawandeep Virdee 
+@kawantum
+whichlight.com
+
+This is the frontend of something I am working on that will give me tons of visual art.  Sometimes I just need a lot of creative input when working on a project, or just to flush my mind and thoughts.  
+
+The image links are stored in a sqlite database and retrieved using bottle.  The website is served with bottle (http://localhost:9999/inspiration), and retrieves the images links with bottle (http://localhost:9999/inspiration/data/:startID), and displays the returned JSON with some javascript.  
+This is a draft, there are few things I want to work out.
+
+*a better way to retrieve the images i.e. a better API for the database.  Maybe this will involve restructuring the database too. 
+
+*a way to avoid repeat images
+
+*a more elegant way to work that infinite scroll, i noticed it didnt work on the iPad.
+
+
